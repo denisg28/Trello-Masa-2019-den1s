@@ -1,39 +1,29 @@
 package com.telran.tests;
 
-import TestBase.TestBase;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ClickBoardTest extends TestBase
 {
 
+
     @Test
 
     public void boardCreationTest() throws InterruptedException {
-        clickOnLoginbutton();  //Ctrl+alt+m
-        pause(2000);
-        fillUserForm("elena.telran@yahoo.com", "12345.com");   //Ctrl+Alt+p
-        confirmLoginButton();
-        pause(20000);
 
-        clickOnPlusButtonOnHeader();
-        selectCreateBoardFromDropDown();
-        fillBoardCreationForm();
-        confirmBoardCreation();
-        clickOnHomeButtonOnHeader();
+        int beforeCreation = getBoardsCount();
+        addOnPlusButtonOnHeader();
+        editTable();
+        ExitTrello();
+        pause(5000);
+        int afterCreation = getBoardsCount();
 
-
-
+        Assert.assertEquals(afterCreation, beforeCreation +1);
     }
 
-    private void selectCreateBoardFromDropDown()
+    public int getBoardsCount()
     {
-
+        return driver.findElements(By.xpath("")).size()-2;
     }
-
-    private void clickOnPlusButtonOnHeader()
-    {
-    click(By.cssSelector(""));
-    }
-
 }

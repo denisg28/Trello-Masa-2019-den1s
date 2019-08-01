@@ -1,30 +1,51 @@
 package com.telran.tests;
 
-import TestBase.TestBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 
 public class LoginTest extends TestBase
 {
+    @BeforeMethod
+    public void preconditions()
+    {
+        logout();
+    }
 
     @Test
     public void loginTest() throws InterruptedException {
         //click on loginbutton
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, "https://trello.com/logged-out");
+
+
         clickOnLoginbutton();  //Ctrl+alt+m
         pause(2000);
-        fillUserForm("elena.telran@yahoo.com", "12345.com");   //Ctrl+Alt+p
+        fillUserForm("denisg28g@gmail.com", "denisg28g28g28");   //Ctrl+Alt+p
         confirmLoginButton();
-        pause(20000);
+        pause(2000);
+//        clickOnPlusButtonOnHeader();
+//        pause(5000);
+//        selectCreateBoardFromDropDown();
+//        pause(2000);
+
+        Assert.assertTrue(isUserLoggedIn());
+
+
         return;
 
     }
 
 
+    public boolean isUserLoggedIn()
+    {
+        return isElementPresent(By.cssSelector(".js-open-header-member-menu"));
+    }
+
+    public boolean isElementPresent(By locator)
+    {
+        return driver.findElements(locator).size()>0;
+    }
 }
