@@ -57,8 +57,12 @@ public class ApplicationManager
     {
         click(By.cssSelector("[name=add]"));
         click(By.cssSelector("[data-test-id=header-create-board-button]"));  //  *//[@data-test-id=header-create-board-button]
-        sendKeys(By.xpath("//*[@placeholder='Добавить заголовок доски']"), "DenisTable");
+        sendKeys(By.xpath("//*[@placeholder='Добавить заголовок доски']"), "DenisTable111");
         Thread.sleep(5000);
+        click(By.cssSelector("[name=down]"));
+        click(By.xpath("//*[contains(text(), 'Без команды')]"));
+
+
         click(By.cssSelector("[data-test-id=header-create-board-submit-button]"));
 
     }

@@ -14,10 +14,10 @@ public class ClickBoardTest extends TestBase
 
         int beforeCreation = getBoardsCount();
         int afterCreation = getBoardsCount();
-        addOnPlusButtonOnHeader();
-        editTable();
-        ExitTrello();
-        pause(5000);
+        app.addOnPlusButtonOnHeader();
+        app.editTable();
+        app.ExitTrello();
+        app.pause(5000);
 
 
         Assert.assertEquals(afterCreation, beforeCreation +1);
@@ -25,6 +25,6 @@ public class ClickBoardTest extends TestBase
 
     public int getBoardsCount()
     {
-        return driver.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size()-2;
+        return app.driver.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size()-2;
     }
 }
