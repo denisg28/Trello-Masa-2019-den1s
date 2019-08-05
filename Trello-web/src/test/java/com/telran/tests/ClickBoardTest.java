@@ -13,17 +13,18 @@ public class ClickBoardTest extends TestBase
     public void boardCreationTest() throws InterruptedException {
 
         int beforeCreation = getBoardsCount();
+        int afterCreation = getBoardsCount();
         addOnPlusButtonOnHeader();
         editTable();
         ExitTrello();
         pause(5000);
-        int afterCreation = getBoardsCount();
+
 
         Assert.assertEquals(afterCreation, beforeCreation +1);
     }
 
     public int getBoardsCount()
     {
-        return driver.findElements(By.xpath("")).size()-2;
+        return driver.findElements(By.xpath("//*[@class='icon-lg icon-member']/../../..//li")).size()-2;
     }
 }
